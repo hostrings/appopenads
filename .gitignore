@@ -6,12 +6,6 @@
 *build/
 *libs/
 
-
-# Ignore gradle files
-#gradle-wrapper.properties
-gradlew
-gradlew.bat
-
 # Built application files
 *.apk
 *.ap_
@@ -52,7 +46,6 @@ captures/
 
 # IntelliJ
 *.iml
-.gradle
 .idea/
 
 # Keystore files
