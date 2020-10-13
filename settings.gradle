@@ -1,2 +1,2 @@
-include ':demo'
+include ':aoa', ':demo'
 rootProject.name = "AppOpenAds"
