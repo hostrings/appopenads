@@ -36,7 +36,7 @@ import com.google.android.gms.ads.appopen.AppOpenAd
 class AppOpenManager @JvmOverloads constructor(
         @NonNull application: Application,
         @NonNull initialDelay: InitialDelay,
-        override var adUnitId: String, // Actually there is no demo ad unit Id
+        @NonNull adUnitId: String,
         override var adRequest: AdRequest = AdRequest.Builder().build(),
         override var orientation: Int = AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT,
 ) : BaseManager(application),
@@ -80,7 +80,6 @@ class AppOpenManager @JvmOverloads constructor(
                     initialDelay.delayPeriodType == DelayType.DAYS &&
                     isInitialDelayOver()
             ) fetchAd()
-
         }
     }
 
@@ -96,12 +95,7 @@ class AppOpenManager @JvmOverloads constructor(
                 logError("Ad Failed To Load, Reason: ${loadError.responseInfo}")
             }
         }
-        AppOpenAd.load(
-                getApplication(),
-                adUnitId, adRequest,
-                orientation,
-                loadCallback
-        )
+        AppOpenAd.load(getApplication(), adUnitId, adRequest, orientation, loadCallback)
     }
 
     // Handling the visibility of App Open Ad

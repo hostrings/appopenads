@@ -22,15 +22,13 @@ allprojects {
 ## Add below to app level gradle
 ```groovy
 dependencies {
-	implementation 'com.github.realchandan:appopenads:1.0.1'
+	implementation 'com.github.realchandan:appopenads:1.0.2'
 }
 ```
 
 ## Now in Application subclass
 ```java
-public class MyApp extends Application {
-    private AppOpenManager<MyApp> appOpenManager;
-
+public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
@@ -38,7 +36,8 @@ public class MyApp extends Application {
         // TODO: Very Important
         // TODO: MAKE SURE YOU TEST WITH TEST IDS
         // TODO: OR CONFIGURE TEST DEVICES
-        appOpenManager = new AppOpenManager<>(this, "<your-ad-id>");
+        new AppOpenManager(App.this, InitialDelay.NONE, MoneyIds.getAppOpenAdId(), new AdRequest.Builder().build(),
+            AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT);
     }
 }
 ```

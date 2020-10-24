@@ -15,17 +15,16 @@ import java.util.*
  *
  * This class is created to declare a few helper methods and variables,
  * so that our main usable class does not have a lot of methods and variables.
- * @see com.lazygeniouz.aoa.AppOpenManager
+ * @see app.chandan.aoa.AppOpenManager
  */
 open class BaseManager(private val application: Application) : BaseObserver(application) {
-    private val sharedPreferences =
-            application.getSharedPreferences("appOpenAdsManager", Context.MODE_PRIVATE)
+    private val sharedPreferences = application.getSharedPreferences("appOpenAdsManager", Context.MODE_PRIVATE)
 
     protected var isShowingAd = false
     protected var appOpenAd: AppOpenAd? = null
     protected var loadCallback: AppOpenAd.AppOpenAdLoadCallback? = null
 
-    open var adUnitId: String = "";
+    open var adUnitId: String = "ca-app-pub-3940256099942544/1033173712";
     open var adRequest: AdRequest = AdRequest.Builder().build()
     open var initialDelay: InitialDelay = InitialDelay()
     open var orientation = AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT
