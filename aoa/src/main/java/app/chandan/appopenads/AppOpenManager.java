@@ -22,7 +22,7 @@ import java.util.Date;
 import static androidx.lifecycle.Lifecycle.Event.ON_START;
 
 public class AppOpenManager<App extends Application> implements Application.ActivityLifecycleCallbacks, LifecycleObserver {
-    public static final String TAG = "AppOpenAds";
+    public static final String TAG = "AppOpenManager";
     private final App app;
     private final String aoa_Id;
     private Activity currentActivity;
@@ -39,21 +39,23 @@ public class AppOpenManager<App extends Application> implements Application.Acti
 
     @OnLifecycleEvent(ON_START)
     public void onStart() {
-        showAdIfAvailable();
         Log.d(TAG, "onStart");
+        showAdIfAvailable();
     }
 
     public void fetchAd() {
         if (isAdAvailable()) {
+            Log.d(TAG, "Ad already available!");
             return;
         }
+        Log.d(TAG, "Will try to load an ad.. .");
         AppOpenAd.load(app, aoa_Id, new AdRequest.Builder().build(), AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT,
                 new AppOpenAd.AppOpenAdLoadCallback() {
                     @Override
                     public void onAppOpenAdLoaded(AppOpenAd ad) {
+                        Log.d(TAG, "Ad loaded successfully!");
                         AppOpenManager.this.appOpenAd = ad;
                         AppOpenManager.this.loadTime = (new Date()).getTime();
-                        Log.d(TAG, "Ad loaded successfully!");
                     }
 
                     @Override
