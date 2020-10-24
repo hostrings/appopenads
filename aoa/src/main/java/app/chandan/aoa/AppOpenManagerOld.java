@@ -1,6 +1,5 @@
 package app.chandan.aoa;
 
-
 import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
@@ -21,7 +20,8 @@ import java.util.Date;
 
 import static androidx.lifecycle.Lifecycle.Event.ON_START;
 
-public class AppOpenManager<App extends Application> implements Application.ActivityLifecycleCallbacks, LifecycleObserver {
+@Deprecated
+public class AppOpenManagerOld<App extends Application> implements Application.ActivityLifecycleCallbacks, LifecycleObserver {
     public static final String TAG = "AppOpenManager";
     private final App app;
     private final String aoa_Id;
@@ -30,7 +30,8 @@ public class AppOpenManager<App extends Application> implements Application.Acti
     private long loadTime = 0;
     private boolean isShowingAd = false;
 
-    public AppOpenManager(App app, String aoa_Id) {
+    @Deprecated
+    private AppOpenManagerOld(App app, String aoa_Id) {
         this.app = app;
         this.aoa_Id = aoa_Id;
         this.app.registerActivityLifecycleCallbacks(this);
@@ -54,8 +55,8 @@ public class AppOpenManager<App extends Application> implements Application.Acti
                     @Override
                     public void onAppOpenAdLoaded(AppOpenAd ad) {
                         Log.d(TAG, "Ad loaded successfully!");
-                        AppOpenManager.this.appOpenAd = ad;
-                        AppOpenManager.this.loadTime = (new Date()).getTime();
+                        AppOpenManagerOld.this.appOpenAd = ad;
+                        AppOpenManagerOld.this.loadTime = (new Date()).getTime();
                     }
 
                     @Override
