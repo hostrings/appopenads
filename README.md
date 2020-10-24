@@ -22,9 +22,10 @@ allprojects {
 ```
 
 ## Add below to app level gradle
+Check the latest version from above.
 ```groovy
 dependencies {
-	implementation 'com.github.realchandan:appopenads:1.0.2'
+	implementation 'com.github.realchandan:appopenads:1.0.3'
 }
 ```
 
