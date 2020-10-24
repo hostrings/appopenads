@@ -24,7 +24,6 @@ open class BaseManager(private val application: Application) : BaseObserver(appl
     protected var appOpenAd: AppOpenAd? = null
     protected var loadCallback: AppOpenAd.AppOpenAdLoadCallback? = null
 
-    open var adUnitId: String = "ca-app-pub-3940256099942544/1033173712";
     open var adRequest: AdRequest = AdRequest.Builder().build()
     open var initialDelay: InitialDelay = InitialDelay()
     open var orientation = AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT

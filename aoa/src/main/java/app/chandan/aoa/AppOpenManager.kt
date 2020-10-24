@@ -36,7 +36,7 @@ import com.google.android.gms.ads.appopen.AppOpenAd
 class AppOpenManager @JvmOverloads constructor(
         @NonNull application: Application,
         @NonNull initialDelay: InitialDelay,
-        @NonNull adUnitId: String,
+        @NonNull var adUnitId: String,
         override var adRequest: AdRequest = AdRequest.Builder().build(),
         override var orientation: Int = AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT,
 ) : BaseManager(application),
