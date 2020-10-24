@@ -23,16 +23,16 @@ import static androidx.lifecycle.Lifecycle.Event.ON_START;
 
 public class AppOpenManager<App extends Application> implements Application.ActivityLifecycleCallbacks, LifecycleObserver {
     public static final String TAG = "AppOpenAds";
-    private App app;
-    private String ad_id;
+    private final App app;
+    private final String aoa_Id;
     private Activity currentActivity;
     private AppOpenAd appOpenAd = null;
     private long loadTime = 0;
     private boolean isShowingAd = false;
 
-    public AppOpenManager(App app, String ad_id) {
+    public AppOpenManager(App app, String aoa_Id) {
         this.app = app;
-        this.ad_id = ad_id;
+        this.aoa_Id = aoa_Id;
         this.app.registerActivityLifecycleCallbacks(this);
         ProcessLifecycleOwner.get().getLifecycle().addObserver(this);
     }
@@ -43,12 +43,11 @@ public class AppOpenManager<App extends Application> implements Application.Acti
         Log.d(TAG, "onStart");
     }
 
-
     public void fetchAd() {
         if (isAdAvailable()) {
             return;
         }
-        AppOpenAd.load(app, ad_id, new AdRequest.Builder().build(), AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT,
+        AppOpenAd.load(app, aoa_Id, new AdRequest.Builder().build(), AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT,
                 new AppOpenAd.AppOpenAdLoadCallback() {
                     @Override
                     public void onAppOpenAdLoaded(AppOpenAd ad) {
