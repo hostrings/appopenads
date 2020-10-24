@@ -1,3 +1,5 @@
+[![](https://jitpack.io/v/realchandan/appopenads.svg)](https://jitpack.io/#realchandan/appopenads)
+
 # AppOpenAds
 App open ads are a special ad format intended for publishers wishing to monetize their app load screens. App open ads can be closed at any time, and are designed to be shown when your users bring your app to the foreground.
 Please check [this](https://developers.google.com/admob/android/app-open-ads)!
