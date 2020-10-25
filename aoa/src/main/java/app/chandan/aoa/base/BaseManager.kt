@@ -24,16 +24,21 @@ open class BaseManager(private val application: Application) : BaseObserver(appl
     protected var appOpenAd: AppOpenAd? = null
     protected var loadCallback: AppOpenAd.AppOpenAdLoadCallback? = null
 
+    // Default values
     open var adRequest: AdRequest = AdRequest.Builder().build()
     open var initialDelay: InitialDelay = InitialDelay()
     open var orientation = AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT
+
+    // Pref keys
+    private val initialDelayKey = "savedDelay"
+    private val lastTime = "lastTime"
 
     protected fun getApplication(): Application = application
 
     // SharedPreferences keep a better track
     protected var loadTime: Long
-        get() = sharedPreferences.getLong("lastTime", 0)
-        set(value) = sharedPreferences.edit().putLong("lastTime", value).apply()
+        get() = sharedPreferences.getLong(lastTime, 0)
+        set(value) = sharedPreferences.edit().putLong(lastTime, value).apply()
 
     /**
      * There's a platform issue on Android 8/8.1 when using Date().time
@@ -44,8 +49,8 @@ open class BaseManager(private val application: Application) : BaseObserver(appl
         else Instant.now().toEpochMilli()
     }
 
+    // Fetches delay and If got nothing saves delay back
     protected fun saveInitialDelayTime() {
-        val initialDelayKey = "savedDelay"
         val savedDelay = sharedPreferences.getLong(initialDelayKey, 0L)
         if (savedDelay == 0L) sharedPreferences.edit().putLong(initialDelayKey, getCurrentTime())
                 .apply()
@@ -65,7 +70,7 @@ open class BaseManager(private val application: Application) : BaseObserver(appl
     // difference = Current Time `minus` Saved Time
     // therefore, difference >= duration.getTime()
     protected fun isInitialDelayOver(): Boolean {
-        val savedDelay = sharedPreferences.getLong("savedDelay", 0L)
+        val savedDelay = sharedPreferences.getLong(initialDelayKey, 0L)
         return (getCurrentTime() - savedDelay) >= initialDelay.getTime()
     }
 }
