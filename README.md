@@ -39,7 +39,7 @@ public class App extends Application {
         // TODO: Very Important
         // TODO: MAKE SURE YOU TEST WITH TEST IDS
         // TODO: OR CONFIGURE TEST DEVICES
-        new AppOpenManager(App.this, InitialDelay.NONE, MoneyIds.getAppOpenAdId(), new AdRequest.Builder().build(),
+        new AppOpenManager(App.this, InitialDelay.NONE, "<your-AppOpenAd-Id>", new AdRequest.Builder().build(),
             AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT);
     }
 }
